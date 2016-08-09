@@ -2,7 +2,7 @@
 
 \setlength{\columnsep}{20pt}
 
-\usepackage[left=1cm, right=1cm, top=1cm, bottom=1.5cm]{geometry}
+\usepackage[left=1.2cm, right=1.2cm, top=1cm, bottom=1.3cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fontspec}
@@ -16,11 +16,17 @@
 \usepackage{array}
 \usepackage[normal]{engord}
 \usepackage[svgnames,table]{xcolor}
+\usepackage{courier}
+\usepackage[T1]{fontenc}
+
+\definecolor{dkgrey}{RGB}{127, 127, 127}
 
 \lstset{
-    basicstyle=\small\ttfamily,
+    basicstyle=\footnotesize\ttfamily,
     numbers=left,
-    tabsize=2
+    numberstyle=\footnotesize\ttfamily\color{dkgrey},
+    numbersep=5pt
+%   frame=trbl
 }
 
 
