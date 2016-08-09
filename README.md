@@ -2,10 +2,10 @@
 
 ## Requirements
 
-* xelatex
-
 ```
 sudo apt-get install texlive-xetex
+sudo apt-get install texlive-lang-cjk
+sudo apt-get install texlive-fonts-recommended
 ```
 
 ## How to build
