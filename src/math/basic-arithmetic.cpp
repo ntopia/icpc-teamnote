@@ -43,8 +43,8 @@ ll modpow(ll n, ll k, ll m) {
     ll ret = 1;
     n %= m;
     while (k) {
-        if (k & 1) ret = ret * n % m;
-        n = n * n % m;
+        if (k & 1) ret = large_mod_mul(ret, n, m);
+        n = large_mod_mul(n, n, m);
         k /= 2;
     }
     return ret;
