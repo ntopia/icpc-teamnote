@@ -5,7 +5,7 @@ bool test_witness(ull a, ull n, ull s) {
     ull x = modpow(a, d, n);
     if (x == 1 || x == n-1) return true;
     while (s-- > 1) {
-        //x = large_mod_mul(x, x, n);      TODO!!
+        x = large_mod_mul(x, x, n);
         x = x * x % n;
         if (x == 1) return false;
         if (x == n-1) return true;
