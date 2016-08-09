@@ -21,6 +21,8 @@
 \usepackage[T1]{fontenc}
 
 \setmainhangulfont{NanumMyeongjo}
+\setlength\parindent{0pt}
+\usepackage[parfill]{parskip}
 
 \definecolor{dkgrey}{RGB}{127, 127, 127}
 
@@ -58,6 +60,7 @@
 \lstinputlisting{src/math/chinese-remainder.cpp}
 
 \subsection{burnside's lemma}
+
 경우의 수를 세는데, 특정 transform operation(회전, 반사, ..)해서 같은 경우들은 하나로 친다.
 전체 경우의 수는?
 
@@ -65,6 +68,15 @@
 (단, ``아무것도 하지 않는다''라는 operation도 있어야 함!)
 
 - 전체 경우의 수를 더한 후, operation의 수로 나눈다. (답이 맞다면 항상 나누어 떨어져야 한다)
+
+\subsection{kirchoff's theorem}
+
+그래프의 스패닝 트리의 개수를 구하는 정리.
+
+무향 그래프의 Laplacian matrix $L$를 만든다. 이것은 (정점의 차수 대각 행렬) - (인접행렬)이다.
+$L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/열이든 관계 없다.
+그래프의 스패닝 트리의 개수는 $det(L')$이다.
+
 
 \section{Data Structure}
 
