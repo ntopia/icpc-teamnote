@@ -14,3 +14,8 @@ sudo apt-get install texlive-xetex
 make
 ```
 
+## Reference
+
+* https://github.com/wookayin/teamnote
+* https://github.com/jaehyunp/stanfordacm
+* https://github.com/albusmath/acm-icpc-template
