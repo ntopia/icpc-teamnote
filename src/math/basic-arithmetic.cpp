@@ -29,10 +29,26 @@ ll modpow(ll n, ll k, ll m) {
     return ret;
 }
 
-// range modular inverse
-int modinv[SIZE];
-void calc_range_modinv(int n, int mod) {
-    modinv[1] = 1;
+// calculate gcd(a, b)
+ll gcd(ll a, ll b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+// find a pair (c, d) s.t. ac + bd = gcd(a, b)
+pair<ll, ll> extended_gcd(ll a, ll b) {
+    if (b == 0) return { 1, 0 };
+    auto t = extended_gcd(b, a % b);
+    return { t.second, t.first - t.second * (a / b) };
+}
+
+// find x in [0,m) s.t. ax ≡ gcd(a, m) (mod m)
+ll modinverse(ll a, ll m) {
+    return (extended_gcd(a, m).first % m + m) % m;
+}
+
+// calculate modular inverse for 1 ~ n
+void calc_range_modinv(int n, int mod, int ret[]) {
+    ret[1] = 1;
     for (int i = 2; i <= n; ++i)
-        modinv[i] = (ll)(mod - mod/i) * modinv[mod%i] % mod;
+        ret[i] = (ll)(mod - mod/i) * ret[mod%i] % mod;
 }
