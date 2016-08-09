@@ -41,7 +41,7 @@ pair<ll, ll> extended_gcd(ll a, ll b) {
     return { t.second, t.first - t.second * (a / b) };
 }
 
-// find x in [0,m) s.t. ax ≡ gcd(a, m) (mod m)
+// find x in [0,m) s.t. ax === gcd(a, m) (mod m)
 ll modinverse(ll a, ll m) {
     return (extended_gcd(a, m).first % m + m) % m;
 }
