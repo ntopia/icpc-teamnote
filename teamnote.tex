@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fontspec}
+\usepackage{kotex}
 \usepackage{graphicx}
 \usepackage{setspace}
 \usepackage{listings}
@@ -18,6 +19,8 @@
 \usepackage[svgnames,table]{xcolor}
 \usepackage{courier}
 \usepackage[T1]{fontenc}
+
+\setmainhangulfont{NanumMyeongjo}
 
 \definecolor{dkgrey}{RGB}{127, 127, 127}
 
@@ -54,6 +57,14 @@
 \subsection{chinese remainder theorem}
 \lstinputlisting{src/math/chinese-remainder.cpp}
 
+\subsection{burnside's lemma}
+경우의 수를 세는데, 특정 transform operation(회전, 반사, ..)해서 같은 경우들은 하나로 친다.
+전체 경우의 수는?
+
+- 각 operation마다 이 operation을 했을 때 변하지 않는 경우의 수를 센다
+(단, ``아무것도 하지 않는다''라는 operation도 있어야 함!)
+
+- 전체 경우의 수를 더한 후, operation의 수로 나눈다. (답이 맞다면 항상 나누어 떨어져야 한다)
 
 \section{Data Structure}
 
