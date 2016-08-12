@@ -106,10 +106,43 @@ $L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/�
 
 \subsection{Convex Hull Optimization}
 
+$O(n^{2}) \to O(n\log{n})$
+
+조건 1) DP 점화식 꼴
+
+$D[i] = \min_{j<i}( D[j] + b[j] * a[i] )$
+
+조건 2) $b[j] \leq b[j+1]$
+
+특수조건) $a[i] \leq a[i+1]$ 도 만족하는 경우, 마지막 쿼리의 위치를 저장해두면 이분검색이 필요없어지기 때문에 armotized $O(n)$ 에 해결할 수 있음
+
 \subsection{Divide \& Conquer Optimization}
+
+$O(kn^{2}) \to O(kn\log{n})$
+
+조건 1) DP 점화식 꼴
+
+$D[t][i] = \min_{j<i}( D[t-1][j] + C[j][i] )$
+
+조건 2) $A[t][i]$는 $D[t][i]$의 답이 되는 최소의 $j$라 할 때, 아래의 부등식을 만족해야 함
+
+$A[t][i] \leq A[t][i+1]$
+
+조건 2-1) 비용$C$가 다음의 사각부등식을 만족하는 경우도 조건 2)를 만족하게 됨
+
+$C[a][c] + C[b][d] \leq C[a][d] + C[b][c]$
 
 \subsection{Knuth Optimization}
 
+$O(n^{3}) \to O(n^{2})$
+
+조건 1) DP 점화식 꼴
+
+$D[i][j] = \min_{i<k<j}( D[i][k] + D[k][j] ) + C[i][j]$
+
+조건 2) $A[i][j]$는 $D[i][j]$의 답이 되는 최소의 $k$라 할 때, 아래의 부등식을 만족해야 함
+
+$A[i][j-1] \leq A[i][j] \leq A[i+1][j]$
 
 \section{Graph}
 
