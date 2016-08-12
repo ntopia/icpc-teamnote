@@ -130,7 +130,7 @@ $A[t][i] \leq A[t][i+1]$
 
 조건 2-1) 비용$C$가 다음의 사각부등식을 만족하는 경우도 조건 2)를 만족하게 됨
 
-$C[a][c] + C[b][d] \leq C[a][d] + C[b][c]$
+$C[a][c] + C[b][d] \leq C[a][d] + C[b][c] \phantom{1} (a \leq b \leq c \leq d)$
 
 \subsection{Knuth Optimization}
 
@@ -140,9 +140,19 @@ $O(n^{3}) \to O(n^{2})$
 
 $D[i][j] = \min_{i<k<j}( D[i][k] + D[k][j] ) + C[i][j]$
 
-조건 2) $A[i][j]$는 $D[i][j]$의 답이 되는 최소의 $k$라 할 때, 아래의 부등식을 만족해야 함
+조건 2) 사각 부등식
+
+$C[a][c] + C[b][d] \leq C[a][d] + C[b][c] \phantom{1} (a \leq b \leq c \leq d)$
+
+조건 3) 단조성
+
+$C[b][c] \leq C[a][d] \phantom{1} (a \leq b \leq c \leq d)$
+
+결론) 조건 2, 3을 만족한다면  $A[i][j]$를 $D[i][j]$의 답이 되는 최소의 $k$라 할 때, 아래의 부등식을 만족하게 됨
 
 $A[i][j-1] \leq A[i][j] \leq A[i+1][j]$
+
+3중 루프를 돌릴 때 위 조건을 이용하면 최종적으로 시간복잡도가 $O(n^{2})$ 이 됨
 
 \section{Graph}
 
