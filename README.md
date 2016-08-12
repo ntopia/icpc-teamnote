@@ -19,3 +19,5 @@ make
 * https://github.com/wookayin/teamnote
 * https://github.com/jaehyunp/stanfordacm
 * https://github.com/albusmath/acm-icpc-template
+* https://github.com/kcm1700/algorithms
+* http://codeforces.com/blog/entry/23054
