@@ -4,7 +4,7 @@ const int TSIZE = 131072; // always 2^k form && n <= TSIZE
 int segtree[TSIZE * 2 + 1], pending[TSIZE * 2 + 1];
 const int EMPTY = 0;
 void seg_init(int nod, int l, int r) {
-    if (l == r) tree[nod] = dat[l];
+    if (l == r) segtree[nod] = dat[l];
     else {
         int m = (l + r) >> 1;
         seg_init(nod << 1, l, m);
