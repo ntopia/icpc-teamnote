@@ -16,7 +16,8 @@ namespace pstree {
     int q[MAX_QUERY + 1];
 
     void init() {
-        memset(&npoll[TSIZE - 1], 0, sizeof(node) * TSIZE); // zero-initialize
+        // zero-initialize, can be changed freely
+        memset(&npoll[TSIZE - 1], 0, sizeof(node) * TSIZE);
 
         for (int i = TSIZE - 2; i >= 0; i--) {
             npoll[i].v = 0;
@@ -32,15 +33,14 @@ namespace pstree {
 
     // update val to pos at time t
     // 0 <= t <= MAX_QUERY, 0 <= pos < TSIZE
-    // must be called in increasing order of t
-    void update(int pos, int t, int val) {
+    void update(int pos, int val, int t, int prev) {
         head[++last_q] = &npoll[pptr++];
-        node *old = head[last_q - 1], *now = head[last_q];
+        node *old = head[q[prev]], *now = head[last_q];
         q[t] = last_q;
 
         int flag = 1 << DEPTH;
         for (;;) {
-            now->v += val;
+            now->v = old->v + val;
             flag >>= 1;
             if (flag==0) break;
             if (flag & pos) {
@@ -65,7 +65,8 @@ namespace pstree {
 
     // query summation of [s, e] at time t
     val_t query(int s, int e, int t) {
-        if (s > e) return 0; // INVALID
+        s = max(0, s); e = min(TSIZE - 1, e);
+        if (s > e) return 0;
         return query(max(0, s), min(TSIZE - 1, e), 0, TSIZE - 1, head[q[t]]);
     }
 }
