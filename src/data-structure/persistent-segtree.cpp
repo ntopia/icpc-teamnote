@@ -32,7 +32,7 @@ namespace pstree {
 
     // update val to pos at time t
     // 0 <= t <= MAX_QUERY, 0 <= pos < TSIZE
-    // increasing order
+    // must be called in increasing order of t
     void update(int pos, int t, int val) {
         head[++last_q] = &npoll[pptr++];
         node *old = head[last_q - 1], *now = head[last_q];
