@@ -8,7 +8,7 @@ void dfs(int nod, int parent) {
     for (int next : tree[nod]) {
         if (next == parent) continue;
         depth[next] = depth[nod] + 1;
-        par[0][next] = parent;
+        par[0][next] = nod;
         dfs(next, nod);
     }
 }
