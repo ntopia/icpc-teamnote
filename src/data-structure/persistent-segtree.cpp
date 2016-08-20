@@ -14,6 +14,7 @@ namespace pstree {
 
     node *head[MAX_QUERY + 1];
     int q[MAX_QUERY + 1];
+    int lqidx;
 
     void init() {
         // zero-initialize, can be changed freely
@@ -29,6 +30,7 @@ namespace pstree {
         last_q = 0;
         pptr = 2 * TSIZE - 1;
         q[0] = 0;
+        lqidx = 0;
     }
 
     // update val to pos at time t
@@ -36,13 +38,16 @@ namespace pstree {
     void update(int pos, int val, int t, int prev) {
         head[++last_q] = &npoll[pptr++];
         node *old = head[q[prev]], *now = head[last_q];
+        while (lqidx < t) q[lqidx++] = q[prev];
         q[t] = last_q;
 
         int flag = 1 << DEPTH;
         for (;;) {
             now->v = old->v + val;
             flag >>= 1;
-            if (flag==0) break;
+            if (flag==0) {
+                now->l = now->r = nullptr; break;
+            }
             if (flag & pos) {
                 now->l = old->l;
                 now->r = &npoll[pptr++];
@@ -59,7 +64,7 @@ namespace pstree {
         if (s == l && e == r) return n->v;
         int m = (l + r) / 2;
         if (m >= e) return query(s, e, l, m, n->l);
-        else if (m > s) return query(s, e, m + 1, r, n->r);
+        else if (m < s) return query(s, e, m + 1, r, n->r);
         else return query(s, m, l, m, n->l) + query(m + 1, e, m + 1, r, n->r);
     }
 
@@ -67,6 +72,6 @@ namespace pstree {
     val_t query(int s, int e, int t) {
         s = max(0, s); e = min(TSIZE - 1, e);
         if (s > e) return 0;
-        return query(max(0, s), min(TSIZE - 1, e), 0, TSIZE - 1, head[q[t]]);
+        return query(s, e, 0, TSIZE - 1, head[q[t]]);
     }
 }
