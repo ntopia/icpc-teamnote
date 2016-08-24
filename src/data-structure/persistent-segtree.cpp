@@ -8,7 +8,7 @@ namespace pstree {
     struct node {
         val_t v;
         node *l, *r;
-    } npoll[TSIZE * 2 + MAX_QUERY * DEPTH];
+    } npoll[TSIZE * 2 + MAX_QUERY * (DEPTH + 1)];
 
     int pptr, last_q;
 
