@@ -114,7 +114,7 @@ $L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/�
 \section{DP}
 
 \subsection{Convex Hull Optimization}
-
+\subsubsection{requirement}
 $O(n^{2}) \to O(n\log{n})$
 
 조건 1) DP 점화식 꼴
@@ -124,6 +124,8 @@ $D[i] = \min_{j<i}( D[j] + b[j] * a[i] )$
 조건 2) $b[j] \leq b[j+1]$
 
 특수조건) $a[i] \leq a[i+1]$ 도 만족하는 경우, 마지막 쿼리의 위치를 저장해두면 이분검색이 필요없어지기 때문에 amortized $O(n)$ 에 해결할 수 있음
+\subsubsection{Source Code}
+\lstinputlisting{src/miscellaneous/convexhulldp.cpp}
 
 \subsection{Divide \& Conquer Optimization}
 
