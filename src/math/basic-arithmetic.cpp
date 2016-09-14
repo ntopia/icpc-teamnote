@@ -1,6 +1,18 @@
 typedef long long ll;
 typedef unsigned long long ull;
 
+// calculate lg2(a)
+inline int lg2(ll a)
+{
+    return __builtin_clzll(a);
+}
+
+// calculate the number of 1-bits
+inline int bitcount(ll a)
+{
+    return __builtin_popcountll(a);
+}
+
 // calculate ceil(a/b)
 // |a|, |b| <= (2^63)-1 (does not dover -2^63)
 ll ceildiv(ll a, ll b) {
