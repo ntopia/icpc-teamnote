@@ -4,7 +4,7 @@ typedef unsigned long long ull;
 // calculate lg2(a)
 inline int lg2(ll a)
 {
-    return __builtin_clzll(a);
+    return 63 - __builtin_clzll(a);
 }
 
 // calculate the number of 1-bits
