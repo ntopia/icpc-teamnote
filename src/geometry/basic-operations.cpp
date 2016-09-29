@@ -1,7 +1,3 @@
-#include <cmath>
-#include <vector>
-using namespace std;
-
 const double eps = 1e-9;
 
 inline int diff(double lhs, double rhs) {
@@ -18,34 +14,27 @@ inline bool is_between(double check, double a, double b) {
 
 struct Point {
     double x, y;
-    Point() {}
-    Point(double x_, double y_) : x(x_), y(y_) {}
-
     bool operator==(const Point& rhs) const {
         return diff(x, rhs.x) == 0 && diff(y, rhs.y) == 0;
     }
-    const Point operator+(const Point& rhs) const {
-        return Point(x + rhs.x, y + rhs.y);
+    Point operator+(const Point& rhs) const {
+        return Point{ x + rhs.x, y + rhs.y };
     }
-    const Point operator-(const Point& rhs) const {
-        return Point(x - rhs.x, y - rhs.y);
+    Point operator-(const Point& rhs) const {
+        return Point{ x - rhs.x, y - rhs.y };
     }
-    const Point operator*(double t) const {
-        return Point(x * t, y * t);
+    Point operator*(double t) const {
+        return Point{ x * t, y * t };
     }
 };
 
 struct Circle {
     Point center;
     double r;
-    Circle() {}
-    Circle(const Point& center_, double r_) : center(center_), r(r_) {}
 };
 
 struct Line {
     Point pos, dir;
-    Line() {}
-    Line(const Point& pos_, const Point& dir_) : pos(pos_), dir(dir_) {}
 };
 
 inline double inner(const Point& a, const Point& b) {
@@ -98,22 +87,20 @@ bool get_segment_cross(const Line& a, const Line& b, Point& ret) {
     return true;
 }
 
-const Point inner_center(const Point &a, const Point &b, const Point &c) {
+Point inner_center(const Point &a, const Point &b, const Point &c) {
     double wa = dist(b, c), wb = dist(c, a), wc = dist(a, b);
     double w = wa + wb + wc;
-    return Point(
-        (wa * a.x + wb * b.x + wc * c.x) / w,
-        (wa * a.y + wb * b.y + wc * c.y) / w);
+    return Point{ (wa * a.x + wb * b.x + wc * c.x) / w, (wa * a.y + wb * b.y + wc * c.y) / w };
 }
 
-const Point outer_center(const Point &a, const Point &b, const Point &c) {
+Point outer_center(const Point &a, const Point &b, const Point &c) {
     Point d1 = b - a, d2 = c - a;
     double area = outer(d1, d2);
     double dx = d1.x * d1.x * d2.y - d2.x * d2.x * d1.y
         + d1.y * d2.y * (d1.y - d2.y);
     double dy = d1.y * d1.y * d2.x - d2.y * d2.y * d1.x
         + d1.x * d2.x * (d1.x - d2.y);
-    return Point(a.x + dx / area / 2.0, a.y - dy / area / 2.0);
+    return Point{ a.x + dx / area / 2.0, a.y - dy / area / 2.0 };
 }
 
 vector<Point> circle_line(const Circle& circle, const Line& line) {
@@ -150,16 +137,16 @@ vector<Point> circle_circle(const Circle& a, const Circle& b) {
     if (diff(cdiff.x, 0) == 0) {
         if (diff(cdiff.y, 0) == 0)
             return result; // if (diff(a.r, b.r) == 0): same circle
-        return circle_line(a, Line(Point(0, tmp / cdiff.y), Point(1, 0)));
+        return circle_line(a, Line{ Point{ 0, tmp / cdiff.y }, Point{ 1, 0 } });
     }
     return circle_line(a,
-        Line(Point(tmp / cdiff.x, 0), Point(-cdiff.y, cdiff.x)));
+        Line{ Point{ tmp / cdiff.x, 0 }, Point{ -cdiff.y, cdiff.x } });
 }
 
-const Circle circle_from_3pts(const Point& a, const Point& b, const Point& c) {
+Circle circle_from_3pts(const Point& a, const Point& b, const Point& c) {
     Point ba = b - a, cb = c - b;
-    Line p((a + b) * 0.5, Point(ba.y, -ba.x));
-    Line q((b + c) * 0.5, Point(cb.y, -cb.x));
+    Line p{ (a + b) * 0.5, Point{ ba.y, -ba.x } };
+    Line q{ (b + c) * 0.5, Point{ cb.y, -cb.x } };
     Circle circle;
     if (!get_cross(p, q, circle.center))
         circle.r = -1;
@@ -168,7 +155,7 @@ const Circle circle_from_3pts(const Point& a, const Point& b, const Point& c) {
     return circle;
 }
 
-const Circle circle_from_2pts_rad(const Point& a, const Point& b, double r) {
+Circle circle_from_2pts_rad(const Point& a, const Point& b, double r) {
     double det = r * r / dist2(a, b) - 0.25;
     Circle circle;
     if (det < 0)
@@ -176,7 +163,7 @@ const Circle circle_from_2pts_rad(const Point& a, const Point& b, double r) {
     else {
         double h = sqrt(det);
         // center is to the left of a->b
-        circle.center = (a + b) * 0.5 + Point(a.y - b.y, b.x - a.x) * h;
+        circle.center = (a + b) * 0.5 + Point{ a.y - b.y, b.x - a.x } * h;
         circle.r = r;
     }
     return circle;
