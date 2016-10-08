@@ -2,8 +2,7 @@ typedef vector<int> seq_t;
 
 void calculate_pi(vector<int>& pi, const seq_t& str) {
     pi[0] = -1;
-    int j = -1;
-    for (int i = 1; i < str.size(); i++) {
+    for (int i = 1, j = -1; i < str.size(); i++) {
         while (j >= 0 && str[i] != str[j + 1]) j = pi[j];
         if (str[i] == str[j + 1])
             pi[i] = ++j;
@@ -14,13 +13,11 @@ void calculate_pi(vector<int>& pi, const seq_t& str) {
 
 // returns all positions matched
 // O(|text|+|pattern|)
-vector<int> kmp(seq_t& text, seq_t& pattern) {
-    vector<int> pi(pattern.size());
-    vector<int> ans;
+vector<int> kmp(const seq_t& text, const seq_t& pattern) {
+    vector<int> pi(pattern.size()), ans;
     if (pattern.size() == 0) return ans;
     calculate_pi(pi, pattern);
-    int j = -1;
-    for (int i = 0; i < text.size(); i++) {
+    for (int i = 0, j = -1; i < text.size(); i++) {
         while (j >= 0 && text[i] != pattern[j + 1]) j = pi[j];
         if (text[i] == pattern[j + 1]) {
             j++;
