@@ -3,8 +3,8 @@ struct rational {
 
     void red() {
         if (q < 0) {
-            p *= -1;
-            q *= -1;
+            p = -p;
+            q = -q;
         }
         ll t = gcd((p >= 0 ? p : -p), q);
         p /= t;
@@ -25,10 +25,12 @@ struct rational {
         return p * rhs.q < rhs.p * q;
     }
     rational operator+(const rational& rhs) const {
-        return rational(p * rhs.q + q * rhs.p, q * rhs.q);
+        ll g = gcd(q, rhs.q);
+        return rational(p * (rhs.q / g) + rhs.p * (q / g), (q / g) * rhs.q);
     }
     rational operator-(const rational& rhs) const {
-        return rational(p * rhs.q - q * rhs.p, q * rhs.q);
+        ll g = gcd(q, rhs.q);
+        return rational(p * (rhs.q / g) - rhs.p * (q / g), (q / g) * rhs.q);
     }
     rational operator*(const rational& rhs) const {
         return rational(p * rhs.p, q * rhs.q);
