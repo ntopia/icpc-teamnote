@@ -1,9 +1,9 @@
 const int MAXN = 100;
 vector<pair<int, int>> graph[MAXN];  // { next vertex id, edge id }
 int up[MAXN], visit[MAXN], vtime;
-vector<int> stk;
+vector<pair<int, int>> stk;
 
-vector<int> cut_vertex;     // list of vertex ids
+int is_cut[MAXN];           // v is cut vertex if  is_cut[v] > 0
 vector<int> bridge;         // list of edge ids
 vector<int> bcc_idx[MAXN];  // list of bccids for vertex i
 int bcc_cnt;
@@ -15,26 +15,28 @@ void dfs(int nod, int par_edge) {
         int next = e.first, edge_id = e.second;
         if (edge_id == par_edge) continue;
         if (visit[next] == 0) {
-            stk.push_back(next);
+            stk.push_back({ nod, next });
             ++child;
             dfs(next, edge_id);
             if (up[next] == visit[next]) bridge.push_back(edge_id);
             if (up[next] >= visit[nod]) {
                 ++bcc_cnt;
                 do {
-                    bcc_idx[stk.back()].push_back(bcc_cnt);
+                    auto last = stk.back();
                     stk.pop_back();
-                } while (!stk.empty() && stk.back() != nod);
-                bcc_idx[nod] = bcc_cnt;
+                    bcc_idx[last.second].push_back(bcc_cnt);
+                    if (last == pair<int, int>{ nod, next }) break;
+                } while (!stk.empty());
+                bcc_idx[nod].push_back(bcc_cnt);
+                is_cut[nod]++;
             }
             up[nod] = min(up[nod], up[next]);
         }
         else
             up[nod] = min(up[nod], visit[next]);
     }
-    if ((par_edge != -1 && child >= 1 && up[nod] == visit[nod])
-        || (par_edge == -1 && child >= 2))
-        cut_vertex.push_back(nod);
+    if (par_edge == -1 && is_cut[nod] == 1)
+        is_cut[nod] = 0;
 }
 
 // find BCCs & cut vertexs & bridges in undirected graph
@@ -42,7 +44,7 @@ void dfs(int nod, int par_edge) {
 void get_bcc() {
     vtime = 0;
     memset(visit, 0, sizeof(visit));
-    cut_vertex.clear();
+    memset(is_cut, 0, sizeof(is_cut));
     bridge.clear();
     for (int i = 0; i < n; ++i) bcc_idx[i].clear();
     bcc_cnt = 0;
