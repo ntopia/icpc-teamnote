@@ -29,12 +29,18 @@
     basicstyle=\footnotesize\ttfamily,
     breaklines=true,
     breakindent=1.1em,
-%   numbers=left,
-%   numberstyle=\footnotesize\ttfamily\color{dkgrey},
-%   numbersep=5pt
-%   frame=trbl
+    numbers=left,
+    numberstyle=\footnotesize\ttfamily\color{dkgrey},
+    numbersep=5pt
+%    frame=trbl
 }
 
+\lstdefinestyle{customcpp}{
+  language=[GNU]C++,
+  keywordstyle=\color{blue},
+  commentstyle=\itshape\color{purple!40!black},
+  stringstyle=\color{orange},
+}
 
 \begin{document}
 \tableofcontents
@@ -49,7 +55,7 @@
 \section{Math}
 
 \subsection{Basic Arithmetic}
-\lstinputlisting{src/math/basic-arithmetic.cpp}
+\lstinputlisting[style=customcpp]{src/math/basic-arithmetic.cpp}
 
 \subsection{Sieve Methods : Prime, Divisor, Euler phi}
 \lstinputlisting{src/math/sieve.cpp}
