@@ -38,7 +38,7 @@
 %    frame=trbl
 }
 
-\lstdefinestyle{customcpp}{
+\lstdefinestyle{mycpp}{
   language=[GNU]C++,
   keywordstyle=\color{blue},
   commentstyle=\itshape\color{purple!40!black},
@@ -58,19 +58,19 @@
 \section{Math}
 
 \subsection{Basic Arithmetic}
-\lstinputlisting[style=customcpp]{src/math/basic-arithmetic.cpp}
+\lstinputlisting[style=mycpp]{src/math/basic-arithmetic.cpp}
 
 \subsection{Sieve Methods : Prime, Divisor, Euler phi}
-\lstinputlisting{src/math/sieve.cpp}
+\lstinputlisting[style=mycpp]{src/math/sieve.cpp}
 
 \subsection{Primality Test}
-\lstinputlisting{src/math/primality-test.cpp}
+\lstinputlisting[style=mycpp]{src/math/primality-test.cpp}
 
 \subsection{Chinese Remainder Theorem}
-\lstinputlisting{src/math/chinese-remainder.cpp}
+\lstinputlisting[style=mycpp]{src/math/chinese-remainder.cpp}
 
 \subsection{Rational Number Class}
-\lstinputlisting{src/math/rational.cpp}
+\lstinputlisting[style=mycpp]{src/math/rational.cpp}
 
 \subsection{Burnside's Lemma}
 
@@ -91,34 +91,34 @@ $L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/�
 그래프의 스패닝 트리의 개수는 $det(L')$이다.
 
 \subsection{Fast Fourier Transform}
-\lstinputlisting{src/math/fft.cpp}
+\lstinputlisting[style=mycpp]{src/math/fft.cpp}
 
 \subsection{Matrix Operations}
-\lstinputlisting{src/math/matrix-operations.cpp}
+\lstinputlisting[style=mycpp]{src/math/matrix-operations.cpp}
 
 \subsection{Gaussian Elimination}
-\lstinputlisting{src/math/gaussian.cpp}
+\lstinputlisting[style=mycpp]{src/math/gaussian.cpp}
 
 \subsection{Simplex Algorithm}
-\lstinputlisting{src/math/simplex.cpp}
+\lstinputlisting[style=mycpp]{src/math/simplex.cpp}
 
 
 \section{Data Structure}
 
 \subsection{Order statistic tree}
-\lstinputlisting{src/data-structure/order-statistic-tree.cpp}
+\lstinputlisting[style=mycpp]{src/data-structure/order-statistic-tree.cpp}
 
 \subsection{Fenwick Tree}
-\lstinputlisting{src/data-structure/fenwick-tree.cpp}
+\lstinputlisting[style=mycpp]{src/data-structure/fenwick-tree.cpp}
 
 \subsection{Segment Tree with Lazy Propagation}
-\lstinputlisting{src/data-structure/segtree-lazyprop.cpp}
+\lstinputlisting[style=mycpp]{src/data-structure/segtree-lazyprop.cpp}
 
 \subsection{Persistent Segment Tree}
-\lstinputlisting{src/data-structure/persistent-segtree.cpp}
+\lstinputlisting[style=mycpp]{src/data-structure/persistent-segtree.cpp}
 
 \subsection{Splay Tree}
-\lstinputlisting{src/data-structure/splay-tree.cpp}
+\lstinputlisting[style=mycpp]{src/data-structure/splay-tree.cpp}
 
 \subsection{Link/Cut Tree}
 
@@ -137,7 +137,7 @@ $D[i] = \min_{j<i}( D[j] + b[j] * a[i] )$
 
 특수조건) $a[i] \leq a[i+1]$ 도 만족하는 경우, 마지막 쿼리의 위치를 저장해두면 이분검색이 필요없어지기 때문에 amortized $O(n)$ 에 해결할 수 있음
 \subsubsection{Source Code}
-\lstinputlisting{src/miscellaneous/convexhulldp.cpp}
+\lstinputlisting[style=mycpp]{src/miscellaneous/convexhulldp.cpp}
 
 \subsection{Divide \& Conquer Optimization}
 
@@ -180,10 +180,10 @@ $A[i][j-1] \leq A[i][j] \leq A[i+1][j]$
 \section{Graph}
 
 \subsection{SCC (Tarjan)}
-\lstinputlisting{src/graph/scc-tarjan.cpp}
+\lstinputlisting[style=mycpp]{src/graph/scc-tarjan.cpp}
 
 \subsection{SCC (Kosaraju)}
-\lstinputlisting{src/graph/scc-kosaraju.cpp}
+\lstinputlisting[style=mycpp]{src/graph/scc-kosaraju.cpp}
 
 \subsection{2-SAT}
 
@@ -194,41 +194,41 @@ boolean variable $b_{i}$ 마다 $b_{i}$를 나타내는 정점, $\neg b_{i} $를
 해가 존재할 때 구체적인 해를 구하는 방법. 위에서 SCC를 구하면서 SCC DAG를 만들어준다. 거기서 위상정렬을 한 후, 앞에서부터 SCC를 하나씩 봐준다. 현재 보고있는 SCC에 $b_{i}$가 속해있는데 얘가 $\neg b_{i}$보다 먼저 등장했다면 $b_{i} = \mathrm{false}$, 반대의 경우라면 $b_{i} = \mathrm{true}$, 이미 값이 assign되었다면 pass.
 
 \subsection{BCC, Cut vertex, Bridge}
-\lstinputlisting{src/graph/bcc.cpp}
+\lstinputlisting[style=mycpp]{src/graph/bcc.cpp}
 
 \subsection{Shortest Path Faster Algorithm}
-\lstinputlisting{src/graph/spfa.cpp}
+\lstinputlisting[style=mycpp]{src/graph/spfa.cpp}
 
 \subsection{Lowest Common Ancestor}
-\lstinputlisting{src/graph/lca.cpp}
+\lstinputlisting[style=mycpp]{src/graph/lca.cpp}
 
 \subsection{Heavy-Light Decomposition}
-\lstinputlisting{src/graph/hld.cpp}
+\lstinputlisting[style=mycpp]{src/graph/hld.cpp}
 
 \subsection{Bipartite Matching (Hopcroft-Karp)}
-\lstinputlisting{src/graph/bipartite-matching-hopcroft.cpp}
+\lstinputlisting[style=mycpp]{src/graph/bipartite-matching-hopcroft.cpp}
 
 \subsection{Maximum Flow (Dinic)}
-\lstinputlisting{src/graph/maxflow-dinic.cpp}
+\lstinputlisting[style=mycpp]{src/graph/maxflow-dinic.cpp}
 
 \subsection{Min-cost Maximum Flow}
-\lstinputlisting{src/graph/mcmf.cpp}
+\lstinputlisting[style=mycpp]{src/graph/mcmf.cpp}
 
 \subsection{General Min-cut (Stoer-Wagner)}
-\lstinputlisting{src/graph/general-mincut-stoer-wagner.cpp}
+\lstinputlisting[style=mycpp]{src/graph/general-mincut-stoer-wagner.cpp}
 
 \section{Geometry}
 
 \subsection{Basic Operations}
-\lstinputlisting{src/geometry/basic-operations.cpp}
+\lstinputlisting[style=mycpp]{src/geometry/basic-operations.cpp}
 
 \subsection{Compare angles}
 
 \subsection{Convex Hull}
-\lstinputlisting{src/geometry/convex-hull.cpp}
+\lstinputlisting[style=mycpp]{src/geometry/convex-hull.cpp}
 
 \subsection{Polygon Cut}
-\lstinputlisting{src/geometry/polygon-cut.cpp}
+\lstinputlisting[style=mycpp]{src/geometry/polygon-cut.cpp}
 
 \subsection{Pick's theorem}
 
@@ -239,24 +239,24 @@ $A = i + \frac{b}{2} - 1$
 \section{String}
 
 \subsection{KMP}
-\lstinputlisting{src/string/kmp.cpp}
+\lstinputlisting[style=mycpp]{src/string/kmp.cpp}
 
 \subsection{Aho-Corasick}
-\lstinputlisting{src/string/aho-corasick.cpp}
+\lstinputlisting[style=mycpp]{src/string/aho-corasick.cpp}
 
 \subsection{Suffix Array with LCP}
-\lstinputlisting{src/string/suffix-array-lcp.cpp}
+\lstinputlisting[style=mycpp]{src/string/suffix-array-lcp.cpp}
 
 \subsection{Suffix Tree}
 
 \subsection{Manacher's Algorithm}
-\lstinputlisting{src/string/manacher.cpp}
+\lstinputlisting[style=mycpp]{src/string/manacher.cpp}
 
 
 \section{Miscellaneous}
 
 \subsection{Fast I/O}
-\lstinputlisting{src/miscellaneous/fastio.cpp}
+\lstinputlisting[style=mycpp]{src/miscellaneous/fastio.cpp}
 
 \subsection{Magic Numbers}
 
