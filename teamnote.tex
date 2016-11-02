@@ -74,6 +74,19 @@
 \subsection{Chinese Remainder Theorem}
 \lstinputlisting[style=mycpp]{src/math/chinese-remainder.cpp}
 
+\subsection{Modular Equation}
+
+$x \equiv a \pmod{m}$, $x \equiv b \pmod{n}$을 만족시키는 $x$를 구하는 방법.
+
+$m$과 $n$을 소인수분해한 후 소수의 제곱꼴의 합동식들로 각각 쪼갠다.
+이 때 특정 소수에 대하여 모순이 생기면 불가능한 경우고,
+모든 소수에 대해서 모순이 생기지 않으면 전체 식을 CRT로 합치면 된다. 이제
+$x \equiv x_1 \pmod{p^{k_1}}$과 $x \equiv x_2 \pmod{p^{k_2}}$가
+모순이 생길 조건은 $k_1 \leq k_2$라고 했을 때,
+$x_1 \not\equiv x_2 \pmod{p^{k_1}}$인 경우이다.
+모순이 생기지 않았을 때 답을 구하려면 
+CRT로 합칠 때 $x \equiv x_2 \pmod{p^{k_2}}$만을 남기고 합쳐주면 된다.
+
 \subsection{Rational Number Class}
 \lstinputlisting[style=mycpp]{src/math/rational.cpp}
 
