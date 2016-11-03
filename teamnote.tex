@@ -90,6 +90,28 @@ CRT로 합칠 때 $x \equiv x_2 \pmod{p^{k_2}}$만을 남기고 합쳐주면 된
 \subsection{Rational Number Class}
 \lstinputlisting[style=mycpp]{src/math/rational.cpp}
 
+\subsection{Catalan number}
+
+다양한 문제의 답이 되는 수열이다.
+
+\begin{itemize}
+\item 길이가 $2n$인 올바른 괄호 수식의 수
+\item $n+1$개의 리프를 가진 풀 바이너리 트리의 수
+\item $n+2$각형을 $n$개의 삼각형으로 나누는 방법의 수
+\end{itemize}
+
+\begin{displaymath}
+C_n = \frac{1}{n + 1} \binom{2n}{n}
+\end{displaymath}
+
+\begin{displaymath}
+C_0 = 1 \quad  \textrm{and} \quad  C_{n + 1} = \sum_{i=0}^{n} C_i C_{n-i}
+\end{displaymath}
+
+\begin{displaymath}
+C_0 = 1 \quad \textrm{and} \quad  C_{n + 1} = \frac{2(2n+1)}{n+2} C_n
+\end{displaymath}
+
 \subsection{Burnside's Lemma}
 
 경우의 수를 세는데, 특정 transform operation(회전, 반사, ..)해서 같은 경우들은 하나로 친다.
