@@ -148,6 +148,22 @@ $L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/�
 \subsection{Simplex Algorithm}
 \lstinputlisting[style=mycpp]{src/math/simplex.cpp}
 
+\subsection{Nim Game}
+
+Nim Game의 해법 : 각 더미의 돌의 개수를 모두 XOR했을 때 $0$이 아니면 첫번째, $0$이면 두번째 플레이어가 승리.
+
+Grundy Number : 가능한 다음 state의 Grundy Number를 모두 모은 다음, 그 set에 포함
+되지 않는 가장 작은 수가 현재 state의 Grundy Number가 된다. 만약 다음 state가
+독립된 여러 개의 state들로 나뉠 경우, 각각의 state의 Grundy Number의 XOR 합을 생각한다.
+
+Subtraction Game : 한 번에 $k$개까지의 돌만 가져갈 수 있는 경우,
+각 더미의 돌의 개수를 $k + 1$로 나눈 나머지를 XOR 합하여 판단한다.
+
+Index-k Nim : 한 번에 최대 k개의 더미를 골라 각각의 더미에서 아무렇게나 돌을
+제거할 수 있을 때, 각 binary digit에 대하여 합을 $k + 1$로 나눈 나머지를 계산한다.
+만약 이 나머지가 모든 digit에 대하여 $0$이라면 두번째, 하나라도 $0$이 아니라면
+첫번째 플레이어가 승리.
+
 
 \section{Data Structure}
 
