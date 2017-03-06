@@ -2,7 +2,7 @@
 //
 // hld h;
 // insert edges to tree[0~n-1];
-// h.init(n);
+// h.init(n, root);
 // h.decompose(root);
 // h.hldquery(u, v); // edges from u to v
 struct hld {
@@ -26,10 +26,10 @@ struct hld {
         }
     }
 
-    void init(int size)
+    void init(int size, int root)
     {
         lchain = fptr = 0;
-        dfs(0, -1);
+        dfs(root, -1);
         memset(chead, -1, sizeof(chead));
 
         for (int i = 1; i < MAXLN; i++) {
@@ -86,7 +86,7 @@ struct hld {
         return 0;
     }
 
-    int subquery(int u, int v, int t) {
+    int subquery(int u, int v) {
         int uchain, vchain = cidx[v];
         int ret = 0;
         for (;;) {
