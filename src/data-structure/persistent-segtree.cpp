@@ -1,4 +1,5 @@
 // persistent segment tree impl: sum tree
+// initial tree index is 0
 namespace pstree {
     typedef int val_t;
     const int DEPTH = 18;
@@ -13,7 +14,6 @@ namespace pstree {
     int pptr, last_q;
 
     node *head[MAX_QUERY + 1];
-    int q[MAX_QUERY + 1];
     int lqidx;
 
     void init() {
@@ -29,17 +29,15 @@ namespace pstree {
         head[0] = &npoll[0];
         last_q = 0;
         pptr = 2 * TSIZE - 1;
-        q[0] = 0;
         lqidx = 0;
     }
 
-    // update val to pos at time t
-    // 0 <= t <= MAX_QUERY, 0 <= pos < TSIZE
-    void update(int pos, int val, int t, int prev) {
+    // update val to pos
+    // 0 <= pos < TSIZE
+	// returns updated tree index
+    int update(int pos, int val, int prev) {
         head[++last_q] = &npoll[pptr++];
-        node *old = head[q[prev]], *now = head[last_q];
-        while (lqidx < t) q[lqidx++] = q[prev];
-        q[t] = last_q;
+        node *old = head[prev], *now = head[last_q];
 
         int flag = 1 << DEPTH;
         for (;;) {
@@ -58,6 +56,7 @@ namespace pstree {
                 now = now->l, old = old->l;
             }
         }
+		return last_q;
     }
 
     val_t query(int s, int e, int l, int r, node *n) {
@@ -72,6 +71,6 @@ namespace pstree {
     val_t query(int s, int e, int t) {
         s = max(0, s); e = min(TSIZE - 1, e);
         if (s > e) return 0;
-        return query(s, e, 0, TSIZE - 1, head[q[t]]);
+        return query(s, e, 0, TSIZE - 1, head[t]);
     }
 }
