@@ -255,8 +255,10 @@ boolean variable $b_{i}$ 마다 $b_{i}$를 나타내는 정점, $\neg b_{i} $를
 
 해가 존재할 때 구체적인 해를 구하는 방법. 위에서 SCC를 구하면서 SCC DAG를 만들어준다. 거기서 위상정렬을 한 후, 앞에서부터 SCC를 하나씩 봐준다. 현재 보고있는 SCC에 $b_{i}$가 속해있는데 얘가 $\neg b_{i}$보다 먼저 등장했다면 $b_{i} = \mathrm{false}$, 반대의 경우라면 $b_{i} = \mathrm{true}$, 이미 값이 assign되었다면 pass.
 
-\subsection{BCC, Cut vertex, Bridge}
+\subsection{BCC, Cut vertex, Bridge, Block-cut Tree}
 \lstinputlisting[style=mycpp]{src/graph/bcc.cpp}
+
+Block-cut Tree: 각 BCC 및 cut vertex가 block-cut tree의 vertex가 되며, BCC와 그 BCC에 속한 cut vertex 사이에 edge를 이어주면 된다.
 
 \subsection{Shortest Path Faster Algorithm}
 \lstinputlisting[style=mycpp]{src/graph/spfa.cpp}
