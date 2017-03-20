@@ -34,7 +34,7 @@ namespace pstree {
 
     // update val to pos
     // 0 <= pos < TSIZE
-	// returns updated tree index
+    // returns updated tree index
     int update(int pos, int val, int prev) {
         head[++last_q] = &npoll[pptr++];
         node *old = head[prev], *now = head[last_q];
@@ -56,7 +56,7 @@ namespace pstree {
                 now = now->l, old = old->l;
             }
         }
-		return last_q;
+        return last_q;
     }
 
     val_t query(int s, int e, int l, int r, node *n) {
