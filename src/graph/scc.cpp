@@ -28,6 +28,7 @@ void dfs(int nod) {
 
 // find SCCs in given directed graph
 // O(V+E)
+// the order of scc_idx constitutes a reverse topological sort
 void get_scc() {
     vtime = 0;
     memset(visit, 0, sizeof(visit));
