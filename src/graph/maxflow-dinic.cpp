@@ -14,7 +14,7 @@ struct MaxFlowDinic {
     typedef int flow_t;
     struct Edge {
         int next;
-        int inv; /* inverse edge index */
+        size_t inv; /* inverse edge index */
         flow_t res; /* residual */
     };
     int n;
