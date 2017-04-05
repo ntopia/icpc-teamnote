@@ -275,29 +275,7 @@ boolean variable $b_{i}$ 마다 $b_{i}$를 나타내는 정점, $\neg b_{i} $를
 \lstinputlisting[style=mycpp]{src/graph/maxflow-dinic.cpp}
 
 \subsection{Maximum Flow with Edge Demands}
-
-그래프 $G=(V,E)$ 가 있고 source $s$와 sink $t$가 있다. 각 간선마다 $d(e) \leq f(e) \leq c(e)$ 를 만족하도록 flow $f(e)$를 흘려야 한다. 이 때의 maximum flow를 구하는 문제다.
-
-먼저 모든 demand를 합한 값 $D$를 아래와 같이 정의한다.
-
-\begin{displaymath}
-D = \sum_{(u \to v) \in E} d(u \to v)
-\end{displaymath}
-
-이제 $G$ 에 몇개의 정점과 간선을 추가하여 새로운 그래프 $G'=(V',E')$ 을 만들 것이다. 먼저 새로운 source $s'$ 과 새로운 sink $t'$ 을 추가한다. 그리고 $s'$에서 $V$의 모든 점마다 간선을 이어주고, $V$의 모든 점에서 $t'$로 간선을 이어준다.
-
-새로운 capacity function $c'$을 아래와 같이 정의한다.
-
-\begin{enumerate}
-\item $V$의 점 $v$에 대해 $c'(s' \to v) = \sum_{u \in V} d(u \to v)$ , $c'(v \to t') = \sum_{w \in V} d(v \to w)$
-\item $E$의 간선 $u \to v$에 대해 $c'(u \to v) = c(u \to v) - d(u \to v)$
-\item $c'(t \to s) = \infty$
-\end{enumerate}
-
-이렇게 만든 새로운 그래프 $G'$에서 maximum flow를 구했을 때 그 값이 $D$라면 원래 문제의 해가 존재하고, 그 값이 $D$가 아니라면 원래 문제의 해는 존재하지 않는다.
-
-위에서 maximum flow를 구하고 난 상태의 residual graph 에서 $s'$과 $t'$을 떼버리고 $s$에서 $t$사이의 augument path 를 계속 찾으면 원래 문제의 해를 구할 수 있다. 
-
+\lstinputlisting[style=mycpp]{src/graph/maxflow-ed.cpp}
 
 \subsection{Min-cost Maximum Flow}
 \lstinputlisting[style=mycpp]{src/graph/mcmf.cpp}
