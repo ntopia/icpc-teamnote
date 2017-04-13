@@ -2,14 +2,12 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 // calculate lg2(a)
-inline int lg2(ll a)
-{
+inline int lg2(ll a) {
     return 63 - __builtin_clzll(a);
 }
 
 // calculate the number of 1-bits
-inline int bitcount(ll a)
-{
+inline int bitcount(ll a) {
     return __builtin_popcountll(a);
 }
 
@@ -31,16 +29,14 @@ ll floordiv(ll a, ll b) {
 
 // calculate a*b % m
 // x86-64 only
-ll large_mod_mul(ll a, ll b, ll m)
-{
+ll large_mod_mul(ll a, ll b, ll m) {
     return ll((__int128)a*(__int128)b%m);
 }
 
 // calculate a*b % m
 // |m| < 2^62, x86 available
 // O(logb)
-ll large_mod_mul(ll a, ll b, ll m)
-{
+ll large_mod_mul(ll a, ll b, ll m) {
     a %= m; b %= m; ll r = 0, v = a;
     while (b) {
         if (b&1) r = (r + v) % m;
