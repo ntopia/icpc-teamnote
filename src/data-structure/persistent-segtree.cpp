@@ -9,12 +9,9 @@ namespace pstree {
     struct node {
         val_t v;
         node *l, *r;
-    } npoll[TSIZE * 2 + MAX_QUERY * (DEPTH + 1)];
+    } npoll[TSIZE * 2 + MAX_QUERY * (DEPTH + 1)], *head[MAX_QUERY + 1];
 
     int pptr, last_q;
-
-    node *head[MAX_QUERY + 1];
-    int lqidx;
 
     void init() {
         // zero-initialize, can be changed freely
@@ -29,7 +26,6 @@ namespace pstree {
         head[0] = &npoll[0];
         last_q = 0;
         pptr = 2 * TSIZE - 1;
-        lqidx = 0;
     }
 
     // update val to pos
