@@ -1,11 +1,11 @@
 int n, m;
 int mat[MAX_N + 1][MAX_M + 1];
 
-// hungarian method
-// bipartite min-weighted matching
+// hungarian method : bipartite min-weighted matching
 // O(n^3) or O(m*n^2)
 // http://e-maxx.ru/algo/assignment_hungary
-//
+// mat[1][1] ~ mat[n][m]
+// matched[i] : matched column of row i
 int hungarian(vector<int>& matched) {
     vector<int> u(n + 1), v(m + 1), p(m + 1), way(m + 1), minv(m + 1);
     vector<char> used(m + 1);
