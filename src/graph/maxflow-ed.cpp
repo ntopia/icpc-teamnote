@@ -13,7 +13,7 @@ struct MaxFlowEdgeDemands
     }
 
     void add_edge(int s, int e, flow_t cap, flow_t demands = 0) {
-		mf.add_edge(s, e, cap - demands);
+        mf.add_edge(s, e, cap - demands);
         D += demands; ind[e] += demands; outd[s] += demands;
     }
 
